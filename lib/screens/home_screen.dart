@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/definitions/palette.dart';
 import 'package:flutter_challenge/widgets/custom_appbar.dart';
@@ -14,14 +15,14 @@ enum Segment {
   third,
 }
 
-class HomeMobileScreen extends StatefulWidget {
-  const HomeMobileScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomeMobileScreen> createState() => _HomeMobileScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeMobileScreenState extends State<HomeMobileScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   late Segment selectedSegment;
 
   @override
@@ -68,7 +69,7 @@ class _HomeMobileScreenState extends State<HomeMobileScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      bottomNavigationBar: !kIsWeb ? const CustomBottomNavBar() : null,
     );
   }
 }

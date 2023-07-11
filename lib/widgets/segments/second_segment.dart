@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/definitions/palette.dart';
-import 'package:flutter_challenge/screens/home_mobile_screen.dart';
+import 'package:flutter_challenge/screens/home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SecondSegment extends StatelessWidget {
@@ -31,6 +32,44 @@ class SecondSegment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (kIsWeb) {
+      return Container(
+        color: Palette.lightBlue,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.4,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              imagePath,
+              width: 324.0,
+              height: 227.0,
+            ),
+            const SizedBox(width: 80.0),
+            RichText(
+              maxLines: 2,
+              text: TextSpan(
+                text: '2.',
+                style: const TextStyle(
+                  fontSize: 130.0,
+                  color: Color(0xff718096),
+                ),
+                children: [
+                  TextSpan(
+                    text: text,
+                    style: const TextStyle(
+                      fontSize: 30.0,
+                      color: Color(0xff718096),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Container(
       color: Palette.lightBlue,
       width: MediaQuery.of(context).size.width,

@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/definitions/palette.dart';
-import 'package:flutter_challenge/screens/home_mobile_screen.dart';
+import 'package:flutter_challenge/screens/home_screen.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 // COuld use SegmentedButtons from Material3 but is still harder to use styles
@@ -22,8 +23,10 @@ class CustomSegmentedButtons extends StatelessWidget {
 
     final first = InkWell(
       onTap: () {
-        itemScrollController.scrollTo(
-            index: 0, duration: const Duration(milliseconds: 300));
+        if (!kIsWeb) {
+          itemScrollController.scrollTo(
+              index: 0, duration: const Duration(milliseconds: 300));
+        }
         onSelection.call(Segment.first);
       },
       child: Container(
@@ -53,8 +56,10 @@ class CustomSegmentedButtons extends StatelessWidget {
 
     final second = InkWell(
       onTap: () {
-        itemScrollController.scrollTo(
-            index: 1, duration: const Duration(milliseconds: 300));
+        if (!kIsWeb) {
+          itemScrollController.scrollTo(
+              index: 1, duration: const Duration(milliseconds: 300));
+        }
         onSelection.call(Segment.second);
       },
       child: Container(
@@ -81,8 +86,10 @@ class CustomSegmentedButtons extends StatelessWidget {
 
     final third = InkWell(
       onTap: () {
-        itemScrollController.scrollTo(
-            index: 2, duration: const Duration(milliseconds: 300));
+        if (!kIsWeb) {
+          itemScrollController.scrollTo(
+              index: 2, duration: const Duration(milliseconds: 300));
+        }
         onSelection.call(Segment.third);
       },
       child: Container(
@@ -109,6 +116,13 @@ class CustomSegmentedButtons extends StatelessWidget {
         ),
       ),
     );
+
+    if (kIsWeb) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [first, second, third],
+      );
+    }
 
     return ScrollablePositionedList.builder(
       itemCount: 3,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge/screens/home_mobile_screen.dart';
+import 'package:flutter_challenge/screens/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.latoTextTheme(),
       ),
-      home: const HomeMobileScreen(),
+      home: const HomeScreen(),
     );
   }
 }
