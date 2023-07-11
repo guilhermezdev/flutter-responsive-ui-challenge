@@ -86,6 +86,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_custom_clippers:
+    dependency: "direct main"
+    description:
+      name: flutter_custom_clippers
+      sha256: "473e3daf61c2a6cee0ad137393259a25223239d519a131c7ec1cac04d06e5407"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -108,7 +116,7 @@ packages:
     source: sdk
     version: "0.0.0"
   google_fonts:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_fonts
       sha256: e20ff62b158b96f392bfc8afe29dee1503c94fbea2cbe8186fd59b756b8ae982
@@ -267,6 +275,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
+  scrollable_positioned_list:
+    dependency: "direct main"
+    description:
+      name: scrollable_positioned_list
+      sha256: "1b54d5f1329a1e263269abc9e2543d90806131aa14fe7c6062a8054d57249287"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.8"
   sky_engine:
     dependency: transitive
     description: flutter

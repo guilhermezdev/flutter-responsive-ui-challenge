@@ -2,34 +2,69 @@ import 'package:flutter/material.dart';
 import 'package:flutter_challenge/definitions/palette.dart';
 import 'package:flutter_challenge/widgets/custom_appbar.dart';
 import 'package:flutter_challenge/widgets/custom_navbar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_challenge/widgets/intro.dart';
+import 'package:flutter_challenge/widgets/segments/first_segment.dart';
+import 'package:flutter_challenge/widgets/segments/second_segment.dart';
+import 'package:flutter_challenge/widgets/segments/third_segment.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
-class HomeMobileScreen extends StatelessWidget {
+enum Segment {
+  first,
+  second,
+  third,
+}
+
+class HomeMobileScreen extends StatefulWidget {
   const HomeMobileScreen({super.key});
+
+  @override
+  State<HomeMobileScreen> createState() => _HomeMobileScreenState();
+}
+
+class _HomeMobileScreenState extends State<HomeMobileScreen> {
+  late Segment selectedSegment;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedSegment = Segment.first;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      backgroundColor: Palette.lightBlue,
+      backgroundColor: Palette.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
-              height: 18.0,
+            ClipPath(
+              clipper: WaveClipperOne(),
+              child: const IntroWidget(),
             ),
-            const Text(
-              'Deine Job\nWebsite',
-              style: TextStyle(
-                fontSize: 42.0,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 1.26,
+            FirstSegment(
+              onSelection: (newSegment) {
+                setState(() {
+                  selectedSegment = newSegment;
+                });
+              },
+              selectedSegment: selectedSegment,
+            ),
+            ClipPath(
+              clipper: WaveClipperOne(),
+              child: ClipPath(
+                clipper: WaveClipperOne(
+                  reverse: true,
+                ),
+                child: SecondSegment(
+                  selectedSegment: selectedSegment,
+                ),
               ),
-              textAlign: TextAlign.center,
             ),
-            SvgPicture.asset(
-              'assets/svg/handshake.svg',
-            )
+            ThirdSegment(
+              selectedSegment: selectedSegment,
+            ),
+            const SizedBox(height: 32.0),
           ],
         ),
       ),
