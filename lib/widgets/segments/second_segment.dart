@@ -20,40 +20,54 @@ class SecondSegment extends StatelessWidget {
     return 'assets/svg/second_section_3.svg';
   }
 
+  String get text {
+    if (selectedSegment == Segment.first) {
+      return 'Erstellen dein Lebenslauf';
+    } else if (selectedSegment == Segment.second) {
+      return 'Erstellen ein Jobinserat';
+    }
+    return 'Erhalte Vermittlungs- angebot von Arbeitgeber';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Palette.lightBlue,
       width: MediaQuery.of(context).size.width,
-      child: Column(
+      height: MediaQuery.of(context).size.height * 0.5,
+      child: Stack(
         children: [
-          const SizedBox(height: 64.0),
-          RichText(
-            text: const TextSpan(
-              text: '2.',
-              style: TextStyle(
-                fontSize: 130.0,
-                color: Color(0xff718096),
-              ),
-              children: [
-                TextSpan(
-                  text: 'Erstellen dein Lebenslauf',
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    color: Color(0xff718096),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
+          Center(
             child: Padding(
-              padding: const EdgeInsets.only(right: 67.0),
+              padding: EdgeInsets.only(
+                top: selectedSegment == Segment.second ? 32.0 : 80.0,
+              ),
               child: SvgPicture.asset(imagePath),
             ),
           ),
-          const SizedBox(height: 64.0),
+          Positioned(
+            top: 50.0,
+            left: 37.0,
+            child: RichText(
+              maxLines: 2,
+              text: TextSpan(
+                text: '2.',
+                style: const TextStyle(
+                  fontSize: 130.0,
+                  color: Color(0xff718096),
+                ),
+                children: [
+                  TextSpan(
+                    text: text,
+                    style: const TextStyle(
+                      fontSize: 15.0,
+                      color: Color(0xff718096),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

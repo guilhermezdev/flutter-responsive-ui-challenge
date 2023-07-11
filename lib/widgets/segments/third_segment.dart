@@ -17,6 +17,15 @@ class ThirdSegment extends StatelessWidget {
     return 'assets/svg/third_section_3.svg';
   }
 
+  String get text {
+    if (selectedSegment == Segment.first) {
+      return 'Mit nur einem Klick\nbewerben';
+    } else if (selectedSegment == Segment.second) {
+      return 'Wahle deinen neuen Mitarbeiter aus';
+    }
+    return 'Vermittlung nach\nProvision oder\nStundenlohn';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,29 +33,48 @@ class ThirdSegment extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.4,
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '3.',
-                style: TextStyle(
-                  fontSize: 130.0,
-                  color: Color(0xff718096),
-                ),
+          Positioned(
+            top: -50,
+            left: -50,
+            child: Container(
+              width: 300,
+              height: 300,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xffF7FAFC),
               ),
-              Text(
-                'Mit nur einem Klick bewerben',
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Color(0xff718096),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 48.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  '3.',
+                  style: TextStyle(
+                    fontSize: 130.0,
+                    color: Color(0xff718096),
+                  ),
                 ),
-              )
-            ],
+                const SizedBox(width: 16.0),
+                Expanded(
+                  child: Text(
+                    text,
+                    style: const TextStyle(
+                      fontSize: 15.0,
+                      color: Color(0xff718096),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
           Positioned(
-            bottom: 10.0,
-            right: 7.0,
+            bottom: selectedSegment == Segment.first ? 10.0 : 0.0,
+            right: selectedSegment == Segment.first ? 7.0 : 70.0,
             child: SvgPicture.asset(imagePath),
           ),
         ],

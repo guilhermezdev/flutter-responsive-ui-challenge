@@ -6,42 +6,52 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 4.0,
-      color: Palette.white,
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(12.0),
-        topRight: Radius.circular(12.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 40.0,
-          vertical: 24.0,
+    return Container(
+      decoration: const BoxDecoration(
+        color: Palette.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12.0),
+          topRight: Radius.circular(12.0),
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16.0),
-            gradient: const LinearGradient(
-              colors: [
-                Palette.green,
-                Palette.blue,
-              ],
-            ),
-            // borderRadius: borderRadius,
+        boxShadow: [
+          BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(12.0),
+          topRight: Radius.circular(12.0),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 40.0,
+            vertical: 24.0,
           ),
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              shadowColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16.0),
+              gradient: const LinearGradient(
+                colors: [
+                  Palette.green,
+                  Palette.blue,
+                ],
               ),
+              // borderRadius: borderRadius,
             ),
-            child: const Text(
-              'Kostenlos Registrieren',
-              style: TextStyle(
-                color: Palette.white,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+                shadowColor: Colors.transparent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+              ),
+              child: const Text(
+                'Kostenlos Registrieren',
+                style: TextStyle(
+                  color: Palette.white,
+                ),
               ),
             ),
           ),

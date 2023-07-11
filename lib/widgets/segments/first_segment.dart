@@ -15,6 +15,22 @@ class FirstSegment extends StatelessWidget {
 
   final void Function(Segment) onSelection;
 
+  String get text {
+    if (selectedSegment == Segment.first) {
+      return 'Erstellen dein Lebenslauf';
+    }
+    return 'Erstellen dein Unternehmensprofil';
+  }
+
+  String get title {
+    if (selectedSegment == Segment.first) {
+      return 'Drei einfache Schritte\nzu deinem neuen Job';
+    } else if (selectedSegment == Segment.second) {
+      return 'Drei einfache Schritte\nzu deinem neuen Mitarbeiter';
+    }
+    return 'Drei einfache Schritte zur\nVermittlung neuer Mitarbeiter';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,9 +50,10 @@ class FirstSegment extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32.0),
-          const Text(
-            'Drei einfache Schritte\nzu deinem neuen Job',
-            style: TextStyle(
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
               color: Color(0xff4A5568),
               fontSize: 21.0,
               fontWeight: FontWeight.w500,
@@ -56,16 +73,16 @@ class FirstSegment extends StatelessWidget {
                   left: 20.0,
                   top: 90.0,
                   child: RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       text: '1.',
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 130.0,
                           color: Color(0xff718096),
                           letterSpacing: 0.0),
                       children: [
                         TextSpan(
-                          text: 'Erstellen dein Lebenslauf',
-                          style: TextStyle(
+                          text: text,
+                          style: const TextStyle(
                             fontSize: 15.0,
                             color: Color(0xff718096),
                           ),
